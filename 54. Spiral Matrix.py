@@ -10,46 +10,46 @@ class Solution:
         m = [[True] * len(matrix[0]) for i in range(len(matrix))]
         r = 0
         c = 0
-        dir = 'r'
+        d = 'r'
         while True:
             ans.append(matrix[r][c])
             m[r][c] = False
-            if dir == 'r':
+            if d == 'r':
                 if c + 1 < len(matrix[0]) and m[r][c + 1]:
                     c += 1
                     continue
                 else:
-                    dir = 'd'
+                    d = 'd'
                     if r + 1 < len(matrix) and m[r + 1][c]:
                         r += 1
                         continue
                     return ans
-            if dir == 'd':
+            if d == 'd':
                 if r + 1 < len(matrix) and m[r + 1][c]:
                     r += 1
                     continue
                 else:
-                    dir = 'l'
+                    d = 'l'
                     if c - 1 >= 0 and m[r][c - 1]:
                         c -= 1
                         continue
                     return ans
-            if dir == 'l':
+            if d == 'l':
                 if c - 1 >= 0 and m[r][c - 1]:
                     c -= 1
                     continue
                 else:
-                    dir = 'u'
+                    d = 'u'
                     if r - 1 >= 0 and m[r - 1][c]:
                         r -= 1
                         continue
                     return ans
-            if dir == 'u':
+            if d == 'u':
                 if r - 1 >= 0 and m[r - 1][c]:
                     r -= 1
                     continue
                 else:
-                    dir = 'r'
+                    d = 'r'
                     if c + 1 < len(matrix[0]) and m[r][c + 1]:
                         c += 1
                         continue
