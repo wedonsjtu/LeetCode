@@ -44,9 +44,27 @@ public:
     }
 };
 
-int main() {
-	Solution a;
-	
-	cout << a << endl;
-	return 0;
-}
+// class Solution {  // another solution
+// public:
+// 	vector<vector<int>> levelOrder(TreeNode* root) {
+//         vector<vector<int>> res;
+// 		if (!root) return res;
+// 		queue<TreeNode*> q;
+// 		TreeNode* tmp;
+// 		int q_len;
+// 		q.push(root);
+// 		while (!q.empty()) {
+// 			q_len = q.size();
+// 			vector<int> current_layer(q_len);
+// 			for (int i=0; i < q_len; ++i) {
+// 				tmp = q.front();
+// 				q.pop();
+// 				current_layer[i] = tmp->val;
+// 				if (tmp->left) q.push(tmp->left);
+// 				if (tmp->right) q.push(tmp->right);
+// 			}
+// 			res.push_back(current_layer);
+// 		}
+// 		return res;
+//     }
+// };
