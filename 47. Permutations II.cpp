@@ -6,7 +6,8 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int> &nums) {
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
         vector<bool> flag(nums.size(), false);
         vector<vector<int>> res;
         vector<int> curr;
@@ -20,7 +21,7 @@ public:
             return;
         }
         for (int i=0; i < nums.size(); ++i) {
-            if (flag[i]) continue;
+            if (flag[i] || (i > 0 && nums[i-1] == nums[i] && !flag[i-1])) continue;
             curr.push_back(nums[i]);
             flag[i] = true;
             backtracking(nums, curr, flag, res);
@@ -32,8 +33,8 @@ public:
 
 int main() {
     Solution a;
-    vector<int> v{1,2,3};
-    vector<vector<int>> ans = a.permute(v);
+    vector<int> v{1,2,3,3};
+    vector<vector<int>> ans = a.permuteUnique(v);
     for (auto &vec: ans) {
         for (auto element: vec) {
             cout << element << ' ';
