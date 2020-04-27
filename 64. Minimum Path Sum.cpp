@@ -5,28 +5,28 @@ using namespace std;
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
-        int* last = new int[grid[0].size()]();
-        int* now = new int[grid[0].size()]();
-		int i, j;
-		int* last_opt = last;
-		int* now_opt = now;
-		int* tmp;
-		for (i=0; i < grid.size(); ++i) {
-			for (j=0; j < grid[0].size(); ++j) {
-				if (i == 0 && j == 0) now_opt[0] = grid[0][0];
-				else if (i == 0) now_opt[j] = now_opt[j-1] + grid[i][j];
-				else if (j == 0) now_opt[j] = last_opt[j] + grid[i][j];
-				else now_opt[j] = min(now_opt[j-1], last_opt[j]) + grid[i][j];
-			}
-			// cout << now_opt[0] << ' ' << now_opt[1] << ' ' << now_opt[2] << endl;
-			tmp = last_opt;
-			last_opt = now_opt;
-			now_opt = tmp;
-		}
-		int ans = last_opt[grid[0].size()-1];
-		delete[] last;
-		delete[] now;
-		return ans;
+        if (grid.empty() || grid[0].empty()) return 0;
+        int* dp = new int[grid[0].size()]();
+		int rows = grid.size(), cols = grid[0].size();
+        for (int i=0; i < rows; ++i) {
+            for (int j=0; j < cols; ++j) {
+                if (i == 0 && j == 0) {
+                    dp[j] = grid[i][j];
+                }
+                else if (i == 0) {
+                    dp[j] = dp[j-1] + grid[i][j];
+                }
+                else if (j == 0) {
+                    dp[j] = dp[j] + grid[i][j];
+                }
+                else {
+                    dp[j] = min(dp[j-1], dp[j]) + grid[i][j];
+                }
+            }
+        }
+        int ans = dp[cols-1];
+        delete[] dp;
+        return ans;
     }
 };
 
